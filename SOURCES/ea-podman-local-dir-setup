@@ -1,0 +1,74 @@
+#!/usr/local/cpanel/3rdparty/bin/perl
+# cpanel - ea-podman-local-dir-setup                 Copyright 2022 cPanel, Inc.
+#                                                           All rights Reserved.
+# copyright@cpanel.net                                         http://cpanel.net
+# This code is subject to the cPanel license. Unauthorized copying is prohibited
+
+use strict;
+use warnings;
+
+package scripts::ea_podman_local_dir_setup;
+
+use File::Path::Tiny ();    # Path::Tiny’s version is overly complicated
+use Path::Tiny 'path';
+use XML::LibXML ();
+use Cwd         ();
+
+run(@ARGV) if !caller;
+
+sub run {
+    my ( $host_path ) = @_;
+
+    return add( $host_path );
+}
+
+################
+#### commands ##
+################
+
+sub add {
+    my ( $host_path ) = @_;
+
+    my ( $user, $homedir ) = ( getpwuid($>) )[ 0, 7 ];
+
+    print "Adding a ea-redis62 instance for “$user” …\n";
+
+    my $curdir = Cwd::cwd();
+
+    {
+        my $orig_umask = umask(0027);
+
+        mkdir $host_path;    # it may exist so don’t check it’s RV
+
+        die "Could not create directory “$host_path”" if !-d $host_path;
+        chdir $host_path or die "Could not change into “$host_path”: $!\n";
+
+        system("cp /opt/cpanel/ea-redis62/podman_entrypoint.sh .");
+        system("chmod 0755 podman_entrypoint.sh");
+
+        system("cp /opt/cpanel/ea-redis62/redis.conf .");
+        system("chmod 0744 redis.conf");
+        
+        umask($orig_umask);
+    }
+
+    chdir $curdir or warn "Could not chdir back to “$curdir”: $!\n";
+    print " … done!\n";
+
+    return;
+}
+
+###############
+#### helpers ##
+###############
+
+sub _bail {
+    my ($msg) = @_;
+
+    chomp($msg);
+    warn "$msg\n";
+
+    exit(1);    # there is no return()ing from this lol
+}
+
+1;
