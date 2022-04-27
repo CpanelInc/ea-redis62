@@ -41,11 +41,11 @@ sub add {
         die "Could not create directory “$host_path”" if !-d $host_path;
         chdir $host_path or die "Could not change into “$host_path”: $!\n";
 
-        Path::Tiny::path("/opt/cpanel/ea-redis62/podman_entrypoint.sh")->copy("podman_entrypoint.sh");
-        Path::Tiny::path("podman_entrypoint.sh")->chmod(0750);
+        path("/opt/cpanel/ea-redis62/podman_entrypoint.sh")->copy("podman_entrypoint.sh");
+        path("podman_entrypoint.sh")->chmod(0750);
 
-        Path::Tiny::path("/opt/cpanel/ea-redis62/redis.conf")->copy("redis.conf");
-        Path::Tiny::path("redis.conf")->chmod(0640);
+        path("/opt/cpanel/ea-redis62/redis.conf")->copy("redis.conf");
+        path("redis.conf")->chmod(0640);
 
         umask($orig_umask);
     }
