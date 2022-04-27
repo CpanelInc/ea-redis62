@@ -9,17 +9,15 @@ use warnings;
 
 package scripts::ea_podman_local_dir_setup;
 
-use File::Path::Tiny ();    # Path::Tiny’s version is overly complicated
 use Path::Tiny 'path';
-use XML::LibXML ();
-use Cwd         ();
+use Cwd ();
 
 run(@ARGV) if !caller;
 
 sub run {
-    my ( $host_path ) = @_;
+    my ($host_path) = @_;
 
-    return add( $host_path );
+    return add($host_path);
 }
 
 ################
@@ -27,7 +25,7 @@ sub run {
 ################
 
 sub add {
-    my ( $host_path ) = @_;
+    my ($host_path) = @_;
 
     my ( $user, $homedir ) = ( getpwuid($>) )[ 0, 7 ];
 
@@ -43,12 +41,12 @@ sub add {
         die "Could not create directory “$host_path”" if !-d $host_path;
         chdir $host_path or die "Could not change into “$host_path”: $!\n";
 
-        system("cp /opt/cpanel/ea-redis62/podman_entrypoint.sh .");
-        system("chmod 0755 podman_entrypoint.sh");
+        Path::Tiny::path("/opt/cpanel/ea-redis62/podman_entrypoint.sh")->copy("podman_entrypoint.sh");
+        Path::Tiny::path("podman_entrypoint.sh")->chmod(0750);
 
-        system("cp /opt/cpanel/ea-redis62/redis.conf .");
-        system("chmod 0744 redis.conf");
-        
+        Path::Tiny::path("/opt/cpanel/ea-redis62/redis.conf")->copy("redis.conf");
+        Path::Tiny::path("redis.conf")->chmod(0640);
+
         umask($orig_umask);
     }
 
