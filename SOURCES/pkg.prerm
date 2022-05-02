@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -x
+
+# Package removal, not upgrade
+if [[ "$1" == "0" || "$1" == "remove" ]]; then
+    if [ -x "/opt/cpanel/ea-podman/bin/ea-podman" ]; then
+        /opt/cpanel/ea-podman/bin/ea-podman remove_containers ea-redis62
+    fi
+fi
+

@@ -1,0 +1,8 @@
+{
+    "adjust_install_file_src" : [
+        ["^.*/([^/]+)$", "./opt/cpanel/ea-redis62/$1"]
+    ],
+    "vars" : {
+        "_arch": ""
+    }
+}
