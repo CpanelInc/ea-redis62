@@ -34,6 +34,7 @@ License: BSD-3-Clause
 Group:   System Environment/Daemons
 URL: https://github.com/redis/redis
 
+Source0: https://github.com/redis/redis/archive/refs/tags/%{version}.tar.gz
 Source1: pkg.prerm
 Source2: redis.conf
 Source3: podman_entrypoint.sh
