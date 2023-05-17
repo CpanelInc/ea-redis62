@@ -19,16 +19,12 @@
 %global with_systemd 0
 %endif
 
-%if 0%{?rhel} >= 8
-%global debug_package %{nil}
-%endif
-
 Name:    ea-redis62
 Vendor:  cPanel, Inc.
 Summary: Redis
 Version: 6.2.8
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4572 for more details
-%define release_prefix 1
+%define release_prefix 2
 Release: %{release_prefix}%{?dist}.cpanel
 License: BSD-3-Clause
 Group:   System Environment/Daemons
@@ -96,6 +92,9 @@ EOF
 %attr(0755,root,root) /opt/cpanel/ea-redis62/podman_entrypoint.sh
 
 %changelog
+* Mon May 08 2023 Brian Mendoza <brian.mendoza@cpanel.net> - 6.2.8-2
+- ZC-10936: Clean up Makefile and remove debug-package-nil
+
 * Thu Dec 15 2022 Cory McIntire <cory@cpanel.net> - 6.2.8-1
 - EA-11106: Update ea-redis62 from v6.2.7 to v6.2.8
 
