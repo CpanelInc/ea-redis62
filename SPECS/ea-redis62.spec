@@ -22,9 +22,9 @@
 Name:    ea-redis62
 Vendor:  cPanel, Inc.
 Summary: Redis
-Version: 6.2.8
+Version: 6.2.14
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4572 for more details
-%define release_prefix 2
+%define release_prefix 1
 Release: %{release_prefix}%{?dist}.cpanel
 License: BSD-3-Clause
 Group:   System Environment/Daemons
@@ -92,6 +92,15 @@ EOF
 %attr(0755,root,root) /opt/cpanel/ea-redis62/podman_entrypoint.sh
 
 %changelog
+* Thu Jan 18 2024 Cory McIntire <cory@cpanel.net> - 6.2.14-1
+- EA-11922: Update ea-redis62 from v6.2.8 to v6.2.14
+- CVE-2023-45145 ( Bypass permissions on socket on startups )
+- CVE-2022-24834 ( RCE )
+- CVE-2023-28856 ( Users can crash redis with invalid data )
+- CVE-2023-25155 ( Integer overflow can cause redis to terminate )
+- CVE-2022-36021 ( DoS - can cause redis to hang and consume 100% CPU time )
+- CVE-2022-35977, CVE-2023-22458 ( integer overflow issues / oom panic fixes )
+
 * Mon May 08 2023 Brian Mendoza <brian.mendoza@cpanel.net> - 6.2.8-2
 - ZC-10936: Clean up Makefile and remove debug-package-nil
 
