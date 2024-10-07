@@ -22,7 +22,7 @@
 Name:    ea-redis62
 Vendor:  cPanel, Inc.
 Summary: Redis
-Version: 6.2.14
+Version: 6.2.16
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4572 for more details
 %define release_prefix 1
 Release: %{release_prefix}%{?dist}.cpanel
@@ -92,6 +92,11 @@ EOF
 %attr(0755,root,root) /opt/cpanel/ea-redis62/podman_entrypoint.sh
 
 %changelog
+* Mon Oct 07 2024 Cory McIntire <cory@cpanel.net> - 6.2.16-1
+- EA-12449: Update ea-redis62 from v6.2.14 to v6.2.16
+- (CVE-2024-31449) Lua library commands may lead to stack overflow and potential RCE.
+- (CVE-2024-31228) Potential Denial-of-service due to unbounded pattern matching.
+
 * Thu Jan 18 2024 Cory McIntire <cory@cpanel.net> - 6.2.14-1
 - EA-11922: Update ea-redis62 from v6.2.8 to v6.2.14
 - CVE-2023-45145 ( Bypass permissions on socket on startups )
