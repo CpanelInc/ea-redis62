@@ -94,6 +94,7 @@ EOF
 %changelog
 * Mon Jan 06 2025 Cory McIntire <cory@cpanel.net> - 6.2.17-1
 - EA-12624: Update ea-redis62 from v6.2.16 to v6.2.17
+- (CVE-2024-46981) Lua script commands may lead to remote code execution
 
 * Mon Oct 07 2024 Cory McIntire <cory@cpanel.net> - 6.2.16-1
 - EA-12449: Update ea-redis62 from v6.2.14 to v6.2.16
