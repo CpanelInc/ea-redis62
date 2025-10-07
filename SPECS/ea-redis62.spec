@@ -94,6 +94,7 @@ EOF
 %changelog
 * Tue Oct 07 2025 Cory McIntire <cory.mcintire@webpros.com> - 6.2.20-1
 - EA-13172: Update ea-redis62 from v6.2.19 to v6.2.20
+- [CVE-2025-49844] Lua use-after-free may lead to remote code execution. CVSS Score: 10.0 (Critical)
 
 * Mon Jul 07 2025 Cory McIntire <cory.mcintire@webpros.com> - 6.2.19-1
 - EA-13003: Update ea-redis62 from v6.2.18 to v6.2.19
