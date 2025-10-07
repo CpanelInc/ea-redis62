@@ -22,7 +22,7 @@
 Name:    ea-redis62
 Vendor:  cPanel, Inc.
 Summary: Redis
-Version: 6.2.19
+Version: 6.2.20
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4572 for more details
 %define release_prefix 1
 Release: %{release_prefix}%{?dist}.cpanel
@@ -92,6 +92,9 @@ EOF
 %attr(0755,root,root) /opt/cpanel/ea-redis62/podman_entrypoint.sh
 
 %changelog
+* Tue Oct 07 2025 Cory McIntire <cory.mcintire@webpros.com> - 6.2.20-1
+- EA-13172: Update ea-redis62 from v6.2.19 to v6.2.20
+
 * Mon Jul 07 2025 Cory McIntire <cory.mcintire@webpros.com> - 6.2.19-1
 - EA-13003: Update ea-redis62 from v6.2.18 to v6.2.19
 - (CVE-2025-32023) Fix out-of-bounds write in HyperLogLog commands
