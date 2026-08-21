@@ -22,7 +22,7 @@
 Name:    ea-redis62
 Vendor:  cPanel, Inc.
 Summary: Redis
-Version: 6.2.23
+Version: 6.2.24
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4572 for more details
 %define release_prefix 1
 Release: %{release_prefix}%{?dist}.cpanel
@@ -92,6 +92,9 @@ EOF
 %attr(0755,root,root) /opt/cpanel/ea-redis62/podman_entrypoint.sh
 
 %changelog
+* Fri Aug 21 2026 EA4 Update Bot <cory.mcintire@webpros.com> - 6.2.24-1
+- EA-13536: Update ea-redis62 from v6.2.23 to v6.2.24
+
 * Sat Jul 25 2026 EA4 Update Bot <cory.mcintire@webpros.com> - 6.2.23-1
 - EA-13512: Update ea-redis62 from v6.2.22 to v6.2.23
 
