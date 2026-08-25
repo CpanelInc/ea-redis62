@@ -94,6 +94,7 @@ EOF
 %changelog
 * Fri Aug 21 2026 EA4 Update Bot <cory.mcintire@webpros.com> - 6.2.24-1
 - EA-13536: Update ea-redis62 from v6.2.23 to v6.2.24
+- Security: use-after-free in the TLS pending-data list when a command closes another pending connection (no CVE assigned upstream as of this release)
 
 * Sat Jul 25 2026 EA4 Update Bot <cory.mcintire@webpros.com> - 6.2.23-1
 - EA-13512: Update ea-redis62 from v6.2.22 to v6.2.23
